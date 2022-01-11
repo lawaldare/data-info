@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="header mt-3">Single Album</h1>
+  <p class="sub-header">By <span class="link" (click)="goToUser()">User {{ userId }}</span></p>
+
+  <div class="row my-4">
+    <div class="col-md-4">
+      <input class="form-control" type="text" placeholder="Search title..." [(ngModel)]="searchTerm">
+    </div>
+  </div>
+
+
+  <div class="photos">
+    <div class="photos__box" *ngFor="let photo of filteredPhotos  | paginate: { itemsPerPage: 10, currentPage: p }">
+      <img [src]="photo.url" alt="photo">
+      <p class="photos__box__title" (click)="goToPhoto(photo.id)">{{ photo.title | truncate:"15" }}</p>
+    </div>
+  </div>
+
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+</div>
+
+<app-loader [loading]="loading"></app-loader>

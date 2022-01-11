@@ -1,0 +1,10 @@
+.photos {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+
+  &__image {
+    height: 50px;
+    margin-right: 10px;
+  }
+}

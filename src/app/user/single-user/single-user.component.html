@@ -1,0 +1,39 @@
+<div class="user">
+
+  <div class="user__header" *ngIf="user">
+    <div class="container">
+      <h1 class="user__header__title">{{ user?.name }}</h1>
+
+      <p class="user__header__info">@{{ user?.username }} - {{ user?.email }} - {{ user?.website }} - {{
+        user.company.name
+        }} - {{ user.address.city }}</p>
+    </div>
+  </div>
+
+  <div class="stat__container mt-4">
+    <div class="stat__box">
+      <p class="stat__box__title">Albums</p>
+      <div class="stat__box__content p-3">
+        <div class="stat__box__content__post mb-3" *ngFor="let album of albums">
+          <p class="stat__box__content__post__title link" (click)="goToAlbum(album.id)">{{ album.title | truncate:"35"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="stat__box">
+      <p class="stat__box__title">Posts</p>
+      <div class="stat__box__content p-3">
+        <div class="stat__box__content__post mb-3" *ngFor="let post of posts">
+          <p class="stat__box__content__post__title link" (click)="goToPost(post.id)">{{ post.title | truncate:"35" }}
+          </p>
+          <p class="stat__box__content__post__body">{{ post.body | truncate:"35" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<app-loader [loading]="loading"></app-loader>

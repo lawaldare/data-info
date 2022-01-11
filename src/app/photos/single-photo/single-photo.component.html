@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="header mt-3">{{ photo.title }}</h1>
+  <p class="link" (click)="goToAlbum(photo.albumId)">View Album</p>
+  <div class="photo d-flex justify-content-center mt-3">
+    <img [src]="photo.url" alt="photo">
+  </div>
+</div>
+
+
+<app-loader [loading]="loading"></app-loader>
