@@ -2,9 +2,9 @@
 
   <div class="user__header" *ngIf="user">
     <div class="container">
-      <h1 class="user__header__title">{{ user?.name }}</h1>
+      <h1 class="user__header__title">{{ user.name }}</h1>
 
-      <p class="user__header__info">@{{ user?.username }} - {{ user?.email }} - {{ user?.website }} - {{
+      <p class="user__header__info">@{{ user.username }} - {{ user.email }} - {{ user.website }} - {{
         user.company.name
         }} - {{ user.address.city }}</p>
     </div>

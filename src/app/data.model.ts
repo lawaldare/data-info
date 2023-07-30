@@ -25,13 +25,13 @@ export interface User {
     geo: {
       lat: string;
       lng: string;
-    }
-  },
+    };
+  };
   company: {
     bs: string;
     catchPhrase: string;
     name: string;
-  }
+  };
 }
 
 export interface Photo {

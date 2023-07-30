@@ -7,11 +7,14 @@ import { DataService } from 'src/app/data.service';
 @Component({
   selector: 'app-single-user',
   templateUrl: './single-user.component.html',
-  styleUrls: ['./single-user.component.scss']
+  styleUrls: ['./single-user.component.scss'],
 })
 export class SingleUserComponent implements OnInit, OnDestroy {
-
-  constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataService,
+    private router: Router
+  ) {}
 
   user: User = {
     id: 0,
@@ -26,15 +29,15 @@ export class SingleUserComponent implements OnInit, OnDestroy {
       zip: '',
       geo: {
         lat: '',
-        lng: ''
-      }
+        lng: '',
+      },
     },
     company: {
       bs: '',
       catchPhrase: '',
-      name: ''
-    }
-  }
+      name: '',
+    },
+  };
 
   posts: Post[] = [];
   albums: Album[] = [];
@@ -47,48 +50,54 @@ export class SingleUserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = params.get("id");
+      const id = params.get('id');
       this.getSingleUser(id);
       this.getSingleUserPosts(id);
       this.getSingleUserAlbums(id);
     });
   }
 
-
-
   getSingleUser(id: any) {
     this.loading = true;
-    this.userSub = this.dataService.getSingleUser(id).subscribe((data: any) => {
-      this.user = data;
-      this.loading = false;
-    }, err => {
-      this.loading = false;
-      console.log(err);
-    })
+    this.userSub = this.dataService.getSingleUser(id).subscribe(
+      (data: any) => {
+        this.user = data;
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+        console.log(err);
+      }
+    );
   }
 
   getSingleUserPosts(id: any) {
     this.loading = true;
-    this.postSub = this.dataService.getSingleUserPosts(id).subscribe((data: any) => {
-      this.posts = data;
-      this.loading = false;
-    }, err => {
-      this.loading = false;
-      console.log(err);
-    })
+    this.postSub = this.dataService.getSingleUserPosts(id).subscribe(
+      (data: any) => {
+        this.posts = data;
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+        console.log(err);
+      }
+    );
   }
 
   getSingleUserAlbums(id: any) {
     this.loading = true;
-    this.albumSub = this.dataService.getSingleUserAlbums(id).subscribe((data: any) => {
-      this.albums = data;
-      this.loading = false;
-    }, err => {
-      this.loading = false;
-      console.log(err);
-    })
+    this.albumSub = this.dataService.getSingleUserAlbums(id).subscribe(
+      (data: any) => {
+        this.albums = data;
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+        console.log(err);
+      }
+    );
   }
-
 
   goToAlbum(albumId: number) {
     this.router.navigate(['/albums', albumId]);
@@ -103,5 +112,4 @@ export class SingleUserComponent implements OnInit, OnDestroy {
     this.postSub.unsubscribe();
     this.albumSub.unsubscribe();
   }
-
 }
